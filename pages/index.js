@@ -1,13 +1,10 @@
 import { Button } from "@material-ui/core";
 import styled from "styled-components";
+import SideBar from "../components/SideBar/SideBar";
 export default function Home() {
   return (
     <div>
-      <h1>ok</h1>
-      <SidebarButton color="primary" variant="contained">
-        ok google
-      </SidebarButton>
-      <Button color="primary">@mui/material</Button>
+      <SideBar></SideBar>
     </div>
   );
 }
