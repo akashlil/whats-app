@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import {
@@ -28,7 +28,15 @@ const ChatScreen = ({ chat, id }) => {
   const [chatFriendData, setChatFriendData] = useState({});
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
-  console.log(user.email);
+  const endofMessage = useRef(null);
+
+  const scrooltoBottom = () => {
+    endofMessage.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   useEffect(() => {
     const cks = async () => {
       const q = query(
@@ -71,6 +79,7 @@ const ChatScreen = ({ chat, id }) => {
       });
 
       setInput("");
+      scrooltoBottom();
     }
   };
 
@@ -87,6 +96,7 @@ const ChatScreen = ({ chat, id }) => {
             message={data.message}
           />
         ))}
+        <EndofMessage ref={endofMessage}></EndofMessage>
       </ChatUserScreen>
 
       <ChatScreenFooter>
@@ -114,6 +124,10 @@ const ChatScreen = ({ chat, id }) => {
 export default ChatScreen;
 
 const Container = styled.div``;
+
+const EndofMessage = styled.div`
+  margin-bottom: 60px;
+`;
 
 const ChatUserScreen = styled.div`
   height: calc(100vh - 180px);

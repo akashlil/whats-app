@@ -13,7 +13,7 @@ const ChatScreenHeader = ({ chatFriendData }) => {
         <ChatUserEmail>
           <p style={{ margin: "0px" }}>{chatFriendData?.displayName}</p>
           <p style={{ margin: "0px", fontSize: "12px" }}>
-            {chatFriendData?.lastSeen?.seconds
+            {chatFriendData?.lastSeen
               ? "last seen : " +
                 new Date().getHours() +
                 ":" +
