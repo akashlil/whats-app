@@ -32,7 +32,7 @@ const Chat = ({ id, chatUsers }) => {
         <ChatAvatar>{chatListUserEmail[0]}</ChatAvatar>
       )}
 
-      <p> {chatUserPhoto?.displayName}</p>
+      <p> {chatUserPhoto ? chatUserPhoto?.displayName : chatListUserEmail}</p>
     </Continter>
   );
 };

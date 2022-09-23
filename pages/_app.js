@@ -3,7 +3,13 @@ import { db, auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "./login";
 import Loading from "../components/Loading/Loading";
-import { doc, setDoc, collection, Timestamp } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  collection,
+  Timestamp,
+  serverTimestamp,
+} from "firebase/firestore";
 import { useEffect } from "react";
 function MyApp({ Component, pageProps }) {
   const [user, loading] = useAuthState(auth);
@@ -14,7 +20,8 @@ function MyApp({ Component, pageProps }) {
       const data = {
         displayName: user.displayName,
         email: user.email,
-        lastSeen: Timestamp.fromDate(new Date()),
+        /* lastSeen: Timestamp.fromDate(new Date()), */
+        lastSeen: serverTimestamp(),
         photoURL: user.photoURL,
       };
       setDoc(doc(userRef, user.uid), data, { merge: true }).catch(alert);

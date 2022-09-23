@@ -2,16 +2,7 @@ import Head from "next/head";
 import styled from "styled-components";
 import ChatScreen from "../../components/ChatScreen/ChatScreen";
 import SideBar from "../../components/SideBar/SideBar";
-import {
-  doc,
-  getDoc,
-  collection,
-  orderBy,
-  Timestamp,
-  onSnapshot,
-  getDocs,
-} from "firebase/firestore";
-import { query as firebseCOk } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const ChatRead = ({ id, chat }) => {
@@ -45,6 +36,10 @@ export async function getServerSideProps({ query }) {
 }
 const Container = styled.div`
   display: flex;
+  @media (min-width: 1200px) {
+    max-width: 80%;
+    margin: 0 auto;
+  }
 `;
 
 const ChatContainer = styled.div`

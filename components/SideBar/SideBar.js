@@ -5,7 +5,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import styled from "styled-components";
 import * as Emailvalidator from "email-validator";
 import { signOut, auth, db } from "../../firebase";
-import { addDoc, collection, query, where } from "firebase/firestore";
+import { addDoc, collection, query, where, doc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import Chat from "../Chat/Chat";
@@ -98,7 +98,7 @@ const SearchButton = styled(Button)`
 `;
 
 const Container = styled.div`
-  flex: 0.5;
+  flex: 0.4;
   border-right: 1px solid whitesmoke;
   height: 100vh;
   min-weight: 300px;
@@ -112,7 +112,7 @@ const Header = styled.div`
   display: flex;
   position: sticky;
   top: 0;
-  background-color: white;
+  background-color: #f0f2f5;
   z-index: 1;
   align-items: center;
   justify-content: space-between;
