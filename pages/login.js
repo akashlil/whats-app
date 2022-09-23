@@ -5,7 +5,9 @@ import { signInWithPopup, auth, provider } from "../firebase";
 
 export default function Login() {
   const singIn = () => {
-    signInWithPopup(auth, provider).catch(alert);
+    signInWithPopup(auth, provider).catch((error) => {
+      console.log(error);
+    });
   };
   return (
     <Container>
