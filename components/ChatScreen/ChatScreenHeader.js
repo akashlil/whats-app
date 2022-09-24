@@ -66,4 +66,9 @@ const HeaderFastContent = styled.div`
 
 const HeaderSecentContent = styled.div``;
 const ChatUserEmail = styled.div``;
-const IconsContaner = styled.div``;
+
+const IconsContaner = styled.div`
+  @media (max-width: 500px) {
+    display: none;
+  }
+`;

@@ -51,7 +51,8 @@ const SideBar = () => {
         <UserAvatar
           src={user ? user.photoURL : "#"}
           onClick={() => signOut(auth)}
-        ></UserAvatar>
+        ></UserAvatar>{" "}
+        <p>{user?.displayName}</p>
         <IconsContaner>
           <IconButton>
             <ChatIcon></ChatIcon>
@@ -119,6 +120,14 @@ const Header = styled.div`
   padding: 15px;
   height: 80px;
   border-bottom: 1px solid whitesmoke;
+  font-size: 16px;
+  @media (max-width: 650px) {
+    flex-direction: column;
+    p {
+      font-size: 10px;
+      margin: 0 1em;
+    }
+  }
 `;
 const UserAvatar = styled(Avatar)`
   cursor: pointer;
@@ -126,4 +135,8 @@ const UserAvatar = styled(Avatar)`
     opacity: 0.8;
   }
 `;
-const IconsContaner = styled.div``;
+const IconsContaner = styled.div`
+  @media (max-width: 650px) {
+    display: none;
+  }
+`;

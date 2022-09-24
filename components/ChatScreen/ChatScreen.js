@@ -16,10 +16,9 @@ import getRecipionEmail from "../../hook/getRecipionEmail";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ChatScreenHeader from "./ChatScreenHeader";
 
-import { IconButton, TextField, Box } from "@material-ui/core";
+import { IconButton, Button } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import SentimentVerySatisfiedIcon from "@material-ui/icons/SentimentVerySatisfied";
-import { useCollection } from "react-firebase-hooks/firestore";
 import Message from "./Message";
 
 const ChatScreen = ({ chat, id }) => {
@@ -29,6 +28,7 @@ const ChatScreen = ({ chat, id }) => {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const endofMessage = useRef(null);
+  const [loadData, setLoadData] = useState(true);
 
   const scrooltoBottom = () => {
     endofMessage.current?.scrollIntoView({
@@ -69,17 +69,23 @@ const ChatScreen = ({ chat, id }) => {
 
   const sendMessage = async (e) => {
     e.preventDefault();
+    setLoadData(false);
     if (input.length > 0) {
       const messageRef = collection(db, "chats", id, "messages");
-      const messageDataShort = await addDoc(messageRef, {
+      addDoc(messageRef, {
         lastSeen: serverTimestamp(),
         message: input,
         user: user.email,
         photoURL: user.photoURL,
-      });
-
-      setInput("");
-      scrooltoBottom();
+      })
+        .then(() => {
+          setInput("");
+          scrooltoBottom();
+          setLoadData(true);
+        })
+        .catch((err) => {
+          alert(err);
+        });
     }
   };
 
@@ -103,19 +109,49 @@ const ChatScreen = ({ chat, id }) => {
         <IconButton>
           <SentimentVerySatisfiedIcon />
         </IconButton>
-        <TextField
-          onChange={(e) => setInput(e.target.value)}
-          fullWidth
-          label="chat start"
-          id="fullWidth"
-          value={input}
-        />
-
-        <IconsContaner>
-          <IconButton>
-            <SendIcon onClick={(e) => sendMessage(e)} />
-          </IconButton>
-        </IconsContaner>
+        <form
+          style={{
+            display: "flex",
+            width: "100%",
+            alignItems: "center",
+            gap: "5px",
+          }}
+          method="post"
+          onSubmit={(e) => sendMessage(e)}
+        >
+          <Input>
+            <input
+              style={{
+                width: "100%",
+                height: "40px",
+                border: "none",
+                borderRadius: "10px",
+                outline: "none",
+                padding: "25px",
+                fontSize: "18px",
+              }}
+              onChange={(e) => setInput(e.target.value)}
+              value={input}
+            />
+          </Input>
+          <IconsContaner>
+            {loadData ? (
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                endIcon={<SendIcon />}
+              />
+            ) : (
+              <Button
+                variant="contained"
+                disabled
+                color="primary"
+                endIcon={<SendIcon />}
+              />
+            )}
+          </IconsContaner>
+        </form>
       </ChatScreenFooter>
     </Container>
   );
@@ -127,6 +163,10 @@ const Container = styled.div``;
 
 const EndofMessage = styled.div`
   margin-bottom: 60px;
+`;
+
+const Input = styled.div`
+  width: 80%;
 `;
 
 const ChatUserScreen = styled.div`
@@ -148,7 +188,7 @@ const ChatScreenFooter = styled.div`
   button: 0px;
   align-items: center;
   justify-content: space-between;
-  padding: 48px;
+  padding: 48px 0px;
   height: 80px;
   border-bottom: 1px solid whitesmoke;
 `;
