@@ -191,5 +191,10 @@ const ChatScreenFooter = styled.div`
   padding: 48px 0px;
   height: 80px;
   border-bottom: 1px solid whitesmoke;
+
+  @media (max-width: 750px) {
+    padding: 30px 0px;
+    height: 50px;
+  }
 `;
 const IconsContaner = styled.div``;

@@ -54,5 +54,6 @@ const ChatContainer = styled.div`
 
   @media (max-width: 750px) {
     height: 95vh;
+    padding;0px
   }
 `;
