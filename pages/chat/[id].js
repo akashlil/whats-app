@@ -51,4 +51,8 @@ const ChatContainer = styled.div`
   }
   -ms-overflow-scrolling: none;
   --scrollbar-width: none;
+
+  @media (max-width: 750px) {
+    height: 95vh;
+  }
 `;
