@@ -4,15 +4,21 @@ import ChatScreen from "../../components/ChatScreen/ChatScreen";
 import SideBar from "../../components/SideBar/SideBar";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { useRouter } from "next/router";
 
 const ChatRead = ({ id, chat }) => {
+  const router = useRouter();
+  const chackRouter = router.asPath;
+
   return (
     <Container>
       <Head>
         <title>Chat</title>
       </Head>
+      <ScreenHiddenBar>
+        <SideBar />
+      </ScreenHiddenBar>
 
-      <SideBar />
       <ChatContainer>
         <ChatScreen chat={chat} id={id} />
       </ChatContainer>
@@ -52,4 +58,10 @@ const ChatContainer = styled.div`
   }
   -ms-overflow-scrolling: none;
   --scrollbar-width: none;
+`;
+
+const ScreenHiddenBar = styled.div`
+  @media (max-width: 650px) {
+    display: none;
+  }
 `;

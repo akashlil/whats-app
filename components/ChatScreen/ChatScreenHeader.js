@@ -3,7 +3,14 @@ import VideocamIcon from "@material-ui/icons/Videocam";
 import CallIcon from "@material-ui/icons/Call";
 import { MoreVert } from "@material-ui/icons";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import HomeIcon from "@material-ui/icons/Home";
+
 const ChatScreenHeader = ({ chatFriendData }) => {
+  const router = useRouter();
+  const homeGo = () => {
+    router.push("/");
+  };
   return (
     <Header>
       <HeaderFastContent>
@@ -26,9 +33,13 @@ const ChatScreenHeader = ({ chatFriendData }) => {
       </HeaderFastContent>
       <HeaderSecentContent>
         <IconsContaner>
+          <IconButton onClick={() => homeGo()}>
+            <HomeIcon />
+          </IconButton>
           <IconButton>
             <VideocamIcon></VideocamIcon>
           </IconButton>
+
           <IconButton>
             <CallIcon></CallIcon>
           </IconButton>
@@ -67,8 +78,4 @@ const HeaderFastContent = styled.div`
 const HeaderSecentContent = styled.div``;
 const ChatUserEmail = styled.div``;
 
-const IconsContaner = styled.div`
-  @media (max-width: 500px) {
-    display: none;
-  }
-`;
+const IconsContaner = styled.div``;

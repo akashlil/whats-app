@@ -9,6 +9,7 @@ import { addDoc, collection, query, where, doc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import Chat from "../Chat/Chat";
+import Loading from "../Loading/Loading";
 
 const SideBar = () => {
   const [user] = useAuthState(auth);
@@ -44,7 +45,6 @@ const SideBar = () => {
       }).catch(alert);
     }
   };
-
   return (
     <Container>
       <Header>
@@ -108,10 +108,6 @@ const Container = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
-
-  @media (max-width: 650px) {
-    display: none;
-  }
 `;
 const Header = styled.div`
   display: flex;
@@ -132,8 +128,4 @@ const UserAvatar = styled(Avatar)`
     opacity: 0.8;
   }
 `;
-const IconsContaner = styled.div`
-  @media (max-width: 650px) {
-    display: none;
-  }
-`;
+const IconsContaner = styled.div``;
