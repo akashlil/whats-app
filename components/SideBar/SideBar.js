@@ -108,6 +108,10 @@ const Container = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: 650px) {
+    display: none;
+  }
 `;
 const Header = styled.div`
   display: flex;
@@ -121,13 +125,6 @@ const Header = styled.div`
   height: 80px;
   border-bottom: 1px solid whitesmoke;
   font-size: 16px;
-  @media (max-width: 650px) {
-    flex-direction: column;
-    p {
-      font-size: 10px;
-      margin: 0 1em;
-    }
-  }
 `;
 const UserAvatar = styled(Avatar)`
   cursor: pointer;

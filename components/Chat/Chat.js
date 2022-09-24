@@ -48,19 +48,13 @@ const Continter = styled.div`
   :hover {
     background-color: whitesmoke;
   }
-  @media (max-width: 768px) {
-    p {
-      display: none;
-    }
-    justify-content: center;
-  }
 `;
 
 const ChatAvatar = styled(Avatar)`
   margin: 5px;
   margin-right: 15px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     margin-right: 0px;
     margin: 5px;
   }

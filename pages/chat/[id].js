@@ -34,6 +34,7 @@ export async function getServerSideProps({ query }) {
     },
   };
 }
+
 const Container = styled.div`
   display: flex;
   @media (min-width: 1200px) {
@@ -45,15 +46,10 @@ const Container = styled.div`
 const ChatContainer = styled.div`
   flex: 1;
   overflow: scroll;
-  height: 100vh;
+  height: 100%;
   ::-webkit-scrollbar {
     display: none;
   }
   -ms-overflow-scrolling: none;
   --scrollbar-width: none;
-
-  @media (max-width: 750px) {
-    height: 95vh;
-    padding;0px
-  }
 `;

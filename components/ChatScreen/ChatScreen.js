@@ -184,17 +184,11 @@ const ChatScreenFooter = styled.div`
   display: flex;
   background-color: #f0f2f5;
   z-index: 100;
-  display: sticky;
   button: 0px;
   align-items: center;
   justify-content: space-between;
   padding: 48px 0px;
   height: 80px;
   border-bottom: 1px solid whitesmoke;
-
-  @media (max-width: 750px) {
-    padding: 30px 0px;
-    height: 50px;
-  }
 `;
 const IconsContaner = styled.div``;
